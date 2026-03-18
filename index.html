@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enquiries | BIS Abu Dhabi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── TWO-COLUMN LAYOUT ── */
+    .page {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* ── LEFT: NAVY PANEL ── */
+    .left {
+      width: 43%;
+      background: #0d2340;
+      padding: 100px 56px 56px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* LOGO (top-left of left panel) */
+    .logo {
+      position: absolute;
+      top: 26px;
+      left: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    /* DOT GRID */
+    .dot-grid {
+      position: absolute;
+      top: 88px;
+      left: 56px;
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 7px;
+      width: 220px;
+    }
+    .dot {
+      width: 5px; height: 5px;
+      background: #29c5c5;
+      border-radius: 50%;
+    }
+
+    /* 100% STAT */
+    .stat-top {
+      margin-top: 60px;
+      margin-bottom: 28px;
+    }
+    .stat-top .num {
+      font-size: 76px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+    .stat-top .lbl {
+      font-size: 13px;
+      color: #8aaac4;
+      margin-top: 6px;
+    }
+
+    /* COLOURED CARDS */
+    .card {
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 14px;
+    }
+    .card.yellow { background: #f5c400; }
+    .card.aqua   { background: #b8e8e4; }
+
+    .card .num {
+      font-size: 54px;
+      font-weight: 800;
+      color: #0d2340;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .card .lbl {
+      font-size: 13px;
+      color: #0d2340;
+      margin-top: 5px;
+      opacity: 0.7;
+    }
+
+    /* ── RIGHT: LIGHT PANEL ── */
+    .right {
+      flex: 1;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Hamburger top-right */
+    .hamburger {
+      position: absolute;
+      top: 24px; right: 28px;
+      width: 44px; height: 44px;
+      background: #0d2340;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hamburger svg { width: 18px; height: 18px; }
+
+    /* ── CHAT WIDGET ── */
+    .widget {
+      background: #fff;
+      border-radius: 18px;
+      width: 360px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.13);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* top bar */
+    .wbar {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fff;
+    }
+    .wbar .av {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: #cceee8;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wbar .av svg { width: 22px; height: 22px; }
+    .wbar .spacer { flex: 1; }
+    .wbar .minus {
+      width: 18px; height: 2px;
+      background: #aaa;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .wbar .dots {
+      display: flex; flex-direction: column;
+      gap: 3px; cursor: pointer;
+    }
+    .wbar .dots i {
+      width: 4px; height: 4px;
+      background: #aaa;
+      border-radius: 50%;
+      display: block;
+    }
+
+    /* messages */
+    .msgs {
+      padding: 18px 18px 10px;
+      background: #f5f5f5;
+      min-height: 280px;
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agent-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .agent-row .sm-av {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #cceee8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .agent-row .sm-av svg { width: 13px; height: 13px; }
+    .agent-row span { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+
+    .bubble {
+      background: #fff;
+      border-radius: 14px;
+      border-bottom-left-radius: 3px;
+      padding: 11px 15px;
+      font-size: 14px;
+      color: #222;
+      line-height: 1.55;
+      margin-bottom: 8px;
+      max-width: 92%;
+      width: fit-content;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .bubble.user {
+      background: #0d2340;
+      color: #fff;
+      border-radius: 14px;
+      border-bottom-right-radius: 3px;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    /* typing indicator */
+    .typing {
+      background: #fff;
+      border-radius: 14px;
+      border-bottom-left-radius: 3px;
+      padding: 11px 15px;
+      margin-bottom: 8px;
+      width: fit-content;
+      display: none;
+      gap: 5px;
+      align-items: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .typing.show { display: flex; }
+    .typing span {
+      width: 7px; height: 7px;
+      background: #bbb;
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%,80%,100%{opacity:0.25} 40%{opacity:1} }
+
+    /* input row */
+    .irow {
+      padding: 12px 14px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid #eee;
+    }
+    .irow input {
+      flex: 1;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #222;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .irow input::placeholder { color: #bbb; }
+    .irow input:focus { border-color: #0d2340; }
+
+    .sbtn {
+      width: 36px; height: 36px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .sbtn:hover { background: #0d2340; border-color: #0d2340; }
+    .sbtn:hover svg { stroke: #fff; }
+    .sbtn svg { width: 15px; height: 15px; fill: none; stroke: #999; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── LEFT ── -->
+  <div class="left">
+
+    <!-- Logo -->
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- open book / crown shape -->
+        <path d="M20 6 C20 6 14 10 8 10 L8 28 C14 28 20 24 20 24 C20 24 26 28 32 28 L32 10 C26 10 20 6 20 6Z" stroke="white" stroke-width="1.5" fill="none"/>
+        <path d="M20 6 L20 24" stroke="white" stroke-width="1.5"/>
+        <path d="M11 13 L17 15 M11 17 L17 19 M11 21 L17 23" stroke="white" stroke-width="1" opacity="0.7"/>
+        <path d="M23 15 L29 13 M23 19 L29 17 M23 23 L29 21" stroke="white" stroke-width="1" opacity="0.7"/>
+        <!-- crown points -->
+        <circle cx="20" cy="4" r="1.5" fill="white"/>
+        <circle cx="8" cy="8" r="1.5" fill="white"/>
+        <circle cx="32" cy="8" r="1.5" fill="white"/>
+      </svg>
+      <div class="logo-text">The British<br/>International School<br/>Abu Dhabi</div>
+    </div>
+
+    <!-- Dot grid -->
+    <div class="dot-grid" id="dotGrid"></div>
+
+    <!-- Stats -->
+    <div class="stat-top">
+      <div class="num">100%</div>
+      <div class="lbl">rating in Irtiqaa &amp; ADEK Inspections</div>
+    </div>
+
+    <div class="card yellow">
+      <div class="num">34</div>
+      <div class="lbl">IBDP score in 2025</div>
+    </div>
+
+    <div class="card aqua">
+      <div class="num">90+</div>
+      <div class="lbl">nationalities in school community</div>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT ── -->
+  <div class="right">
+
+    <button class="hamburger">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+	<script>
+    window.openDialogSettings = {
+      url: 'https://niico.cloud.opendialog.ai',
+      appKey: '2251799816000001|AT3mJZn538QPxHjixsMqv8mhFwwqXFwi4UdlGvG504dcd35b',
+      user: {
+        custom: {
+          selected_scenario: '2251799820000158',
+          session_lifetime: 0
+        }
+      },
+
+      customSettings: {
+        openCta: {"title":"Hello!👋 Chat with us!","icon":"https://niico.cloud.opendialog.ai/build/assets/cta-chat-open-B-5EZOgf.svg","borderRadius":"50px","width":"280px","height":"80px","background":"#001abf"},
+        openCta: {
+          title: "Hello!👋 Chat with us!",
+          icon: "https://niico.cloud.opendialog.ai/images/cta-chat-open.svg",
+          borderRadius: "50px",
+          width: "280px",
+          height: "80px",
+          background: "#001abf",
+        },
+        additionalMenuLinks: [
+          // uncomment and adjust if you want to add any link(s)
+          //{
+          //   url: "https://docs.opendialog.ai/",
+          //   title: "Check the documentation"
+          // }
+        ]
+      },
+        };
+</script>
+<script src='https://niico.cloud.opendialog.ai/dist/nu-webchat-js'></script>
+<!--
+    <!-- Chat widget 
+    <div class="widget">
+
+      <!-- Top bar 
+      <div class="wbar">
+        <div class="av">
+          <svg viewBox="0 0 24 24" fill="#3aaa90"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#3aaa90"/></svg>
+        </div>
+        <div class="spacer"></div>
+        <div class="minus"></div>
+        <div class="dots"><i></i><i></i><i></i></div>
+      </div>
+<!--
+      <!-- Messages 
+      <div class="msgs" id="msgs">
+        <div class="agent-row">
+          <div class="sm-av">
+            <svg viewBox="0 0 24 24" fill="#3aaa90"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#3aaa90"/></svg>
+          </div>
+          <span>Aria</span>
+        </div>
+        <div class="bubble">I'm sorry, I didn't quite catch that. Could you try rephrasing?</div>
+        <div class="bubble">Hello! 👋 I'm Aria, the school's Admissions Assistant.</div>
+        <div class="bubble">Before I gather more details from you, I'd love to learn about your family, is there anything you can tell me that I can pass onto our admissions team?</div>
+        <div class="typing" id="typing"><span></span><span></span><span></span></div>
+      </div>
+
+      <!-- Input 
+      <div class="irow">
+        <input type="text" id="inp" placeholder="Enter your message" onkeydown="if(event.key==='Enter')send()"/>
+        <button class="sbtn" onclick="send()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="#999" stroke="none"/></svg>
+        </button>
+      </div>
+-->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Build dot grid
+  const g = document.getElementById('dotGrid');
+  for (let i = 0; i < 8 * 20; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    g.appendChild(d);
+  }
+
+  const replies = [
+    "Thank you! Could you let me know the age of your child and the year group you're enquiring about?",
+    "Wonderful — we'd love to welcome your family. Shall I arrange a school tour for you?",
+    "Our admissions team will be in touch very soon. Is there anything else I can help with?"
+  ];
+  let ri = 0;
+
+  function send() {
+    const inp = document.getElementById('inp');
+    const text = inp.value.trim();
+    if (!text) return;
+    inp.value = '';
+    const msgs = document.getElementById('msgs');
+    const typing = document.getElementById('typing');
+
+    const ub = document.createElement('div');
+    ub.className = 'bubble user';
+    ub.textContent = text;
+    msgs.insertBefore(ub, typing);
+    msgs.scrollTop = 9999;
+
+    typing.classList.add('show');
+    msgs.scrollTop = 9999;
+
+    setTimeout(() => {
+      typing.classList.remove('show');
+      const bb = document.createElement('div');
+      bb.className = 'bubble';
+      bb.textContent = replies[ri++ % replies.length];
+      msgs.insertBefore(bb, typing);
+      msgs.scrollTop = 9999;
+    }, 1400);
+  }
+</script>
+</body>
+</html>
