@@ -1,0 +1,256 @@
+/*
+ * BIS Abu Dhabi — Custom OpenDialog Webchat CSS
+ * Upload to: OD Platform → Publish → Interface Settings → CSS for Chatbot
+ * Brand: Navy #0d2340 | Teal #29c5c5 | Yellow #f5c400 | Light teal #b8e8e4
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── GLOBAL ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── OUTER BODY / FRAME ── */
+.od-body {
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(13, 35, 64, 0.18) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+/* ── HEADER ── */
+.od-body-header {
+  background: #0d2340 !important;
+  border-bottom: none !important;
+  border-radius: 20px 20px 0 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot pattern in header */
+.od-body-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(41,197,197,0.3) 1px, transparent 1px);
+  background-size: 14px 14px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.od-body-header__container {
+  padding: 18px 20px !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header logo/title area */
+.od-body-header__title {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.2px !important;
+}
+
+/* Header icon buttons (close, menu) */
+.od-body-header__menu,
+.od-body-header__close {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color 0.2s ease !important;
+}
+.od-body-header__menu:hover,
+.od-body-header__close:hover {
+  color: #29c5c5 !important;
+}
+
+/* ── MESSAGE AREA (scroll container) ── */
+.od-body__main {
+  background: #f4f7fb !important;
+  padding: 12px 0 !important;
+}
+
+/* ── MESSAGE BUBBLES — BOT ── */
+/* Bot messages: clean white with navy text */
+.od-message--bot .od-message__bubble,
+.od-message[data-author="bot"] .od-message__bubble,
+[class*="bot"] .od-message__bubble,
+.od-chat-message--bot .od-message__content {
+  background: #ffffff !important;
+  color: #0d2340 !important;
+  border-radius: 18px 18px 18px 4px !important;
+  box-shadow: 0 2px 8px rgba(13, 35, 64, 0.08) !important;
+  border: 1px solid rgba(13, 35, 64, 0.06) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  padding: 12px 16px !important;
+}
+
+/* ── MESSAGE BUBBLES — USER ── */
+/* User messages: navy with white text */
+.od-message--user .od-message__bubble,
+.od-message[data-author="user"] .od-message__bubble,
+[class*="user"] .od-message__bubble,
+.od-chat-message--user .od-message__content {
+  background: linear-gradient(135deg, #0d2340 0%, #1a3a5c 100%) !important;
+  color: #ffffff !important;
+  border-radius: 18px 18px 4px 18px !important;
+  box-shadow: 0 2px 10px rgba(13, 35, 64, 0.25) !important;
+  border: none !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  padding: 12px 16px !important;
+}
+
+/* ── GENERIC MESSAGE CONTENT (catches all variants) ── */
+.od-message__content {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* ── AGENT AVATAR ── */
+.od-message__avatar,
+.od-avatar {
+  background: linear-gradient(135deg, #29c5c5, #b8e8e4) !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  box-shadow: 0 2px 6px rgba(41, 197, 197, 0.3) !important;
+}
+
+/* ── AGENT NAME LABEL ── */
+.od-message__author,
+.od-message__name {
+  color: #29c5c5 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 4px !important;
+}
+
+/* ── TYPING INDICATOR ── */
+.od-typing-indicator,
+.od-message--typing .od-message__bubble {
+  background: #ffffff !important;
+  border-radius: 18px 18px 18px 4px !important;
+  box-shadow: 0 2px 8px rgba(13, 35, 64, 0.08) !important;
+  border: 1px solid rgba(13, 35, 64, 0.06) !important;
+  padding: 12px 16px !important;
+}
+.od-typing-indicator__dot {
+  background: #29c5c5 !important;
+}
+
+/* ── BOTTOM FORM / INPUT AREA ── */
+.od-body-form {
+  background: #ffffff !important;
+  border-top: 1px solid #edf1f6 !important;
+  border-radius: 0 0 20px 20px !important;
+  padding-bottom: 0 !important;
+}
+.od-body-form__container {
+  padding: 14px 16px 20px !important;
+  gap: 10px !important;
+}
+
+/* ── TEXT INPUT ── */
+.od-user-input .textarea-sizer {
+  background: #f4f7fb !important;
+  border: 1.5px solid #dde4ef !important;
+  border-radius: 12px !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.od-user-input .textarea-sizer:focus-within {
+  border-color: #29c5c5 !important;
+  outline-color: rgba(41, 197, 197, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(41, 197, 197, 0.12) !important;
+}
+.od-user-input .textarea-sizer textarea {
+  color: #0d2340 !important;
+  font-size: 14px !important;
+  padding: 8px 14px !important;
+}
+.od-user-input .textarea-sizer textarea::placeholder {
+  color: #9aadbe !important;
+}
+
+/* ── SEND BUTTON ── */
+.od-user-input__button {
+  background: #0d2340 !important;
+  border-color: #0d2340 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  width: 38px !important;
+  height: 38px !important;
+  transition: all 0.2s ease !important;
+}
+.od-user-input__button:hover:not(:disabled) {
+  background: #29c5c5 !important;
+  border-color: #29c5c5 !important;
+  transform: scale(1.05) !important;
+}
+.od-user-input__button:disabled {
+  background: #dde4ef !important;
+  border-color: #dde4ef !important;
+  color: #9aadbe !important;
+}
+
+/* ── QUICK REPLY / BUTTON CHIPS ── */
+.od-reply-button,
+.od-button,
+[class*="reply-button"],
+[class*="od-chip"] {
+  background: #ffffff !important;
+  color: #0d2340 !important;
+  border: 1.5px solid #dde4ef !important;
+  border-radius: 50px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 8px 18px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+.od-reply-button:hover,
+.od-button:hover,
+[class*="reply-button"]:hover,
+[class*="od-chip"]:hover {
+  background: #0d2340 !important;
+  color: #ffffff !important;
+  border-color: #0d2340 !important;
+}
+
+/* ── SCROLLBAR (message area) ── */
+.od-body__main::-webkit-scrollbar {
+  width: 4px !important;
+}
+.od-body__main::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.od-body__main::-webkit-scrollbar-thumb {
+  background: #dde4ef !important;
+  border-radius: 4px !important;
+}
+
+/* ── DROPDOWN MENU ── */
+.od-dropdown-menu {
+  border-radius: 14px !important;
+  border: 1px solid #edf1f6 !important;
+  box-shadow: 0 8px 24px rgba(13, 35, 64, 0.12) !important;
+}
+.od-dropdown-menu__item:hover {
+  background-color: rgba(41, 197, 197, 0.08) !important;
+}
+
+/* ── CHAT WINDOW IFRAME SIZE (for page CSS) ── */
+.od-chat-window.iframe {
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px !important;
+}
+.od-chat-window.iframe.opened {
+  margin: 0 !important;
+  height: 100% !important;
+}
