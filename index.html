@@ -125,6 +125,33 @@
       position: relative;
     }
 
+    /* ── OD PARENT CONTAINER ── */
+    #od-chatbot {
+      width: 400px;
+      height: 600px;
+      border-radius: 18px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.13);
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Override OD's default fixed positioning on its injected iframe */
+    #od-chatbot > iframe#opendialog-chatwindow {
+      position: static !important;
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      border-radius: 0 !important;
+    }
+
+    /* Catch any wrapper divs OD injects */
+    #od-chatbot > div {
+      position: static !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
     /* Hamburger top-right */
     .hamburger {
       position: absolute;
@@ -350,75 +377,28 @@
         <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
     </button>
-	<script>
-    window.openDialogSettings = {
-      url: 'https://niico.cloud.opendialog.ai',
-      appKey: '2251799816000001|AT3mJZn538QPxHjixsMqv8mhFwwqXFwi4UdlGvG504dcd35b',
-      user: {
-        custom: {
-          selected_scenario: '1125899916003095',
-          session_lifetime: 0
-        }
-      },
 
-      customSettings: {
-        openCta: {"title":"Hello!👋 Chat with us!","icon":"https://niico.cloud.opendialog.ai/build/assets/cta-chat-open-B-5EZOgf.svg","borderRadius":"50px","width":"280px","height":"80px","background":"#001abf"},
-        openCta: {
-          title: "Hello!👋 Chat with us!",
-          icon: "https://niico.cloud.opendialog.ai/images/cta-chat-open.svg",
-          borderRadius: "50px",
-          width: "280px",
-          height: "80px",
-          background: "#001abf",
+    <!-- OD parent container — widget injects its iframe here via parentEl -->
+    <div id="od-chatbot"></div>
+
+    <script>
+      window.openDialogSettings = {
+        url: 'https://niico.cloud.opendialog.ai',
+        appKey: '2251799816000001|AT3mJZn538QPxHjixsMqv8mhFwwqXFwi4UdlGvG504dcd35b',
+        user: {
+          custom: {
+            selected_scenario: '1125899916003095',
+            session_lifetime: 0
+          }
         },
-        additionalMenuLinks: [
-          // uncomment and adjust if you want to add any link(s)
-          //{
-          //   url: "https://docs.opendialog.ai/",
-          //   title: "Check the documentation"
-          // }
-        ]
-      },
-        };
-</script>
-<script src='https://niico.cloud.opendialog.ai/dist/nu-webchat-js'></script>
-<!--
-    <!-- Chat widget 
-    <div class="widget">
+        parentEl: '#od-chatbot',
+        customSettings: {
+          additionalMenuLinks: []
+        }
+      };
+    </script>
+    <script src='https://niico.cloud.opendialog.ai/dist/nu-webchat-js'></script>
 
-      <!-- Top bar 
-      <div class="wbar">
-        <div class="av">
-          <svg viewBox="0 0 24 24" fill="#3aaa90"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#3aaa90"/></svg>
-        </div>
-        <div class="spacer"></div>
-        <div class="minus"></div>
-        <div class="dots"><i></i><i></i><i></i></div>
-      </div>
-<!--
-      <!-- Messages 
-      <div class="msgs" id="msgs">
-        <div class="agent-row">
-          <div class="sm-av">
-            <svg viewBox="0 0 24 24" fill="#3aaa90"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#3aaa90"/></svg>
-          </div>
-          <span>Aria</span>
-        </div>
-        <div class="bubble">I'm sorry, I didn't quite catch that. Could you try rephrasing?</div>
-        <div class="bubble">Hello! 👋 I'm Aria, the school's Admissions Assistant.</div>
-        <div class="bubble">Before I gather more details from you, I'd love to learn about your family, is there anything you can tell me that I can pass onto our admissions team?</div>
-        <div class="typing" id="typing"><span></span><span></span><span></span></div>
-      </div>
-
-      <!-- Input 
-      <div class="irow">
-        <input type="text" id="inp" placeholder="Enter your message" onkeydown="if(event.key==='Enter')send()"/>
-        <button class="sbtn" onclick="send()">
-          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="#999" stroke="none"/></svg>
-        </button>
-      </div>
--->
-    </div>
   </div>
 </div>
 
